@@ -1,0 +1,88 @@
+consultas basicas
+
+insertar
+db.productos.insertOne({
+  nombre: "Samsung Galaxy S24 Ultra",
+  categoria: "Celulares",
+  precio: 5200000,
+  stock: 10,
+  marca: "Samsung",
+  rating: 4.9,
+  vendidos: 800
+})
+
+
+buscar
+db.productos.find().limit(10)
+
+
+actualizar
+db.productos.updateOne(
+  { nombre: "iPhone 14" },
+  { $set: { precio: 4500000 } }
+)
+
+
+eliminar 
+db.productos.deleteOne({ nombre: "Funko Pop Iron Man" })
+
+
+consultas con filtros
+
+precio mayor de 200.000
+db.productos.find({ precio: { $gt: 200000 } })
+
+
+productos por marca Samsung
+db.productos.find({ marca: "Samsung" })
+
+
+rating mayor a 4.0
+db.productos.find({ rating: { $gte: 4.0 } })
+
+
+electronica con precio mayor a 300.000
+db.productos.find({
+  categoria: "Electrónica",
+  precio: { $gt: 300000 }
+})
+
+
+marcas especificas
+db.productos.find({
+  marca: { $in: ["Sony", "JBL"] }
+})
+
+
+consultas de agregacion
+
+consulta por categoria
+db.productos.aggregate([
+  { $group: { _id: "$categoria", total: { $sum: 1 } } }
+])
+
+
+promedio por precio
+db.productos.aggregate([
+  { $group: { _id: null, promedio: { $avg: "$precio" } } }
+])
+
+
+precio maximo y minimo
+db.productos.aggregate([
+  { $group: { _id: "$categoria", max: { $max: "$precio" }, min: { $min: "$precio" } } }
+])
+
+
+
+total vendidos por marca
+db.productos.aggregate([
+  { $group: { _id: "$marca", vendidos: { $sum: "$vendidos" } } },
+  { $sort: { vendidos: -1 } }
+])
+
+
+stock por categoria
+db.productos.aggregate([
+  { $group: { _id: "$categoria", stockPromedio: { $avg: "$stock" } } }
+])
