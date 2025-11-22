@@ -1,0 +1,52 @@
+const productos = [
+  "iPhone 14", "iPhone 13", "iPhone 12", "Samsung Galaxy S23", "Samsung Galaxy A54",
+  "Xiaomi Redmi Note 13", "Xiaomi Poco X5 Pro", "Huawei P50", "Motorola Edge 40",
+  "Sony WH-1000XM5", "Sony WH-CH510", "Apple AirPods Pro", "Apple AirPods 3",
+  "JBL Tune 510BT", "JBL Charge 5", "JBL Flip 6", "Logitech G Pro X",
+  "Logitech MX Master 3", "Razer BlackWidow V3", "Razer DeathAdder V2",
+  "Corsair K95 RGB Platinum", "Corsair HS70 Pro", "HP Pavilion 15",
+  "HP Victus Gaming", "Acer Nitro 5", "Acer Aspire 5", "Asus TUF Gaming F15",
+  "Asus VivoBook 14", "Lenovo IdeaPad 3", "Lenovo ThinkPad X1 Carbon",
+  "Nintendo Switch", "Nintendo Switch Lite", "Sony PlayStation 5",
+  "Xbox Series X", "Xbox Series S", "Funko Pop Iron Man", "Funko Pop Goku",
+  "Lego Star Wars X-Wing", "Lego Harry Potter Hogwarts", "Hot Wheels Monster Truck",
+  "Hot Wheels Ferrari", "Barbie Dreamhouse", "Barbie Fashionista", "Coche RC Buggy",
+  "Drone DJI Mini 2", "GoPro Hero 11", "Canon EOS Rebel T7", "Nikon D3500",
+  "Samsung 55'' Crystal UHD", "LG OLED C2 55''", "Hisense QLED 50''",
+  "Philips AirFryer XL", "Xiaomi Mi Band 7", "Garmin Forerunner 45",
+  "Fitbit Charge 5", "Apple Watch SE", "Apple Watch Series 8",
+  "Sudadera Nike Sportswear", "Camiseta Adidas Originals", "Zapatos Adidas Ultraboost",
+  "Zapatos Nike Air Max 270", "Chaqueta North Face", "Pantalón Levi’s 501",
+  "Camisa Polo Ralph Lauren", "Gafas Ray-Ban Aviator", "Perfume Dior Sauvage",
+  "Perfume Carolina Herrera 212", "Teclado Logitech K380", "Mouse Microsoft Bluetooth",
+  "Monitor Samsung 27''", "Monitor LG UltraGear 24''", "Impresora Epson L3250",
+  "Impresora HP Ink Tank 315", "Tablet Samsung Galaxy Tab A8",
+  "Tablet Lenovo M10 Plus", "Kindle Paperwhite", "Alexa Echo Dot 5",
+  "Router TP-Link Archer AX50", "Router Huawei AX3", "Disco SSD Samsung 970 EVO",
+  "Disco SSD WD Blue", "Tarjeta MicroSD SanDisk 128GB", "Memoria USB Kingston 64GB",
+  "Silla Gamer Cougar", "Silla Gamer Razer Iskur", "Escritorio Gamer Eureka",
+  "Cámara Logitech C920", "Micrófono Blue Yeti", "Micrófono HyperX QuadCast",
+  "Parlante Bose SoundLink", "Parlante Sony XB23", "Smart TV TCL 65''",
+  "Chromecast Google TV", "Proyector Epson PowerLite", "Regleta Forza 6 tomas",
+  "Disco Duro Seagate 1TB", "Refrigerador LG InstaView", "Lavadora Samsung EcoBubble"
+];
+
+const categorias = ["Celulares", "Audio", "Electrónica", "Computadores", "TV", "Consolas", "Hogar", "Ropa", "Accesorios", "Juguetería"];
+const marcas = ["Apple", "Samsung", "Xiaomi", "Sony", "JBL", "Logitech", "Razer", "HP", "Acer", "Asus", "Lenovo", "LG", "Adidas", "Nike", "Hasbro", "Lego", "Canon", "Nikon", "GoPro", "DJI"];
+
+let docs = [];
+
+for (let i = 0; i < 100; i++) {
+  docs.push({
+    nombre: productos[i % productos.length],
+    categoria: categorias[Math.floor(Math.random() * categorias.length)],
+    precio: Math.floor(Math.random() * 400000) + 50000,
+    stock: Math.floor(Math.random() * 50) + 1,
+    marca: marcas[Math.floor(Math.random() * marcas.length)],
+    rating: (Math.random() * 5).toFixed(1),
+    vendidos: Math.floor(Math.random() * 5000),
+    fecha_ingreso: new Date()
+  });
+}
+
+db.productos.insertMany(docs);
